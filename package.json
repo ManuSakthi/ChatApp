@@ -1,0 +1,20 @@
+{
+  "name": "chatappmanu",
+  "version": "1.0.0",
+  "description": "Chat app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "*",
+    "mongodb": "^3.0.2",
+    "mongoose": "^4.13.11",
+    "socket.io": "*"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
