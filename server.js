@@ -4,8 +4,8 @@ var express = require('express'),
 var socket = require("socket.io");
 var dbConst = require("./const");
 var mongoose = require("mongoose");
-
-
+var registerUser = require("./modules/registerUser")
+var User = require("./models/Users");
 server.listen(process.env.PORT || 3000);
 console.log('server is running');
 
@@ -13,14 +13,29 @@ console.log('server is running');
 mongoose.connect(dbConst);
 var db = mongoose.connection;
 
+
 db.on('error',console.error.bind(console, "Connection Problem"));
 db.on('open', function(){
     console.log("connected");
+   
 })
 
-app.get('/register' , function(req , res){
+
+
+app.get('/register' ,(req , res) => {
 console.log('got Api');
-res.send('hiii mmm');
+var newUser = User({
+    firstName: "Manu",
+    lastName: "S",
+    email: "manusakthi@gmail.com",
+    
+  
+})
+registerUser(newUser, (error, data) => {
+    res.send(data);
+});
+
+
 
 });
 app.use(express.static('public'));

@@ -1,14 +1,7 @@
 
-import { Schema } from "mongoose";
-
 var mongoose = require("mongoose");
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
  var usersSchema = new Schema({
-    id: {
-        type: String,
-        unique: true,
-        require : true
-    },
     firstName: {
         type : String,
         required : true
@@ -21,12 +14,12 @@ var schema = mongoose.Schema;
         type : String,
         required : true
     },
-    password: {
-        type : String,
-        required : true
-    }
+    // password: {
+    //     type : String,
+    //     required : true
+    // }
 
 
  });
-var user = mongoose.model("user" ,usersSchema);
-module.exports = user;
+var User = mongoose.model("user" ,usersSchema);
+module.exports = User;
