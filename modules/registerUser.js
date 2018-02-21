@@ -1,19 +1,12 @@
 var mongoose = require('mongoose');
 var User = require("../models/Users");
 
-module.exports = function(user)
+module.exports.addUser = function(user,callback)
 {
-    user.save(function(error,data)
-{
-    if(error)
-    {
-        return   error;
-    }
-    else
-    {
-        return data;
-    }
-   
+    user.save(callback);
+}
 
-});
+module.exports.getUsers = function(callbacks)
+{
+    User.find(callbacks);
 }

@@ -4,8 +4,13 @@ var express = require('express'),
 var socket = require("socket.io");
 var dbConst = require("./const");
 var mongoose = require("mongoose");
-var registerUser = require("./modules/registerUser")
-var User = require("./models/Users");
+var api = require("./Apis/apis")
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+// var registerUser = require("./modules/registerUser");
+// var User = require("./models/Users");
+
 server.listen(process.env.PORT || 3000);
 console.log('server is running');
 
@@ -19,26 +24,21 @@ db.on('open', function(){
     console.log("connected");
    
 })
+// app.get('/users' ,function(req , res){
+//     console.log('got Api');
+//     registerUser.getUsers(function(err , users){
+//         if(err) throw err
+        
+//         res.json(users);
 
+//     })
+//     });
 
-
-app.get('/register' ,(req , res) => {
-console.log('got Api');
-var newUser = User({
-    firstName: "Manu",
-    lastName: "S",
-    email: "manusakthi@gmail.com",
-    
-  
-})
-registerUser(newUser, (error, data) => {
-    res.send(data);
-});
-
-
-
-});
 app.use(express.static('public'));
+
+app.get('/users' , api.getUsers);
+app.post('/addUsers' , api.addUser);
+
 var io = socket(server);
 
 io.on("connection",function(socket){
